@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import urllib.request, json
+import urllib.request, json, requests
 
 class Ui_BitCoin(object):
     def setupUi(self, BitCoin):
@@ -31,11 +31,14 @@ class Ui_BitCoin(object):
         self.choose_price.setObjectName("choose_price")
         self.choose_price.addItem("")
         self.choose_price.addItem("")
+        self.choose_price.addItem("")        
+        self.choose_price.addItem("")
+        self.choose_price.addItem("")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(17, 10, 101, 20))
         self.label.setObjectName("label")
         self.show_price = QtWidgets.QLabel(self.centralwidget)
-        self.show_price.setGeometry(QtCore.QRect(11, 84, 69, 13))
+        self.show_price.setGeometry(QtCore.QRect(11, 84, 70, 13))
         self.show_price.setObjectName("show_price")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(80, 80, 61, 20))
@@ -58,23 +61,44 @@ class Ui_BitCoin(object):
         _translate = QtCore.QCoreApplication.translate
         BitCoin.setWindowTitle(_translate("BitCoin", "BitCoin"))
         self.get_price.setText(_translate("BitCoin", "تبدیل"))
-        self.choose_price.setItemText(0, _translate("BitCoin", "USD"))
-        self.choose_price.setItemText(1, _translate("BitCoin", "EUR"))
+        self.choose_price.setItemText(0, _translate("BitCoin", "USD ($)"))
+        self.choose_price.setItemText(1, _translate("BitCoin", 'IRI'))
+        self.choose_price.setItemText(2, _translate("BitCoin", "EUR (€)"))
+        self.choose_price.setItemText(3, _translate("BitCoin", "GBP (£)"))
+        self.choose_price.setItemText(4, _translate("BitCoin", 'AUD (A$)'))
+                
         self.label.setText(_translate("BitCoin", "تبدیل کننده بیت کوین"))
         self.label_3.setText(_translate("BitCoin", "1 بیت کوین:"))
 
         app.processEvents()
 
     def call_price(self):
-        app.processEvents()        
-        currency = self.choose_price.currentText()
-        url = f'https://api.coinbase.com/v2/prices/BTC-{currency}/buy'
         app.processEvents()
-        response = urllib.request.urlopen(url)
-        app.processEvents()
-        data = response.read()
-        app.processEvents()
-        price = json.loads(data)['data']['amount']
+        currency = self.choose_price.currentText()[0:3]        
+
+        if currency == 'IRI':
+            key = 'JFGN2c6leJDktgSkIbrXezvEOa0ZxrS2'
+            url = f'http://api.navasan.tech/latest/?api_key={key}'
+            response = requests.get(url)
+            data = response.json()
+            price = data["usd_sell"]["value"]
+            url = f'https://api.coinbase.com/v2/prices/BTC-USD/sell'
+            app.processEvents()
+            response = urllib.request.urlopen(url)
+            app.processEvents()
+            data = response.read()
+            app.processEvents()
+            USD = json.loads(data)['data']['amount']
+            price = str(int(int(price) * float(USD)))
+        else:
+            url = f'https://api.coinbase.com/v2/prices/BTC-{currency}/sell'
+            app.processEvents()
+            response = urllib.request.urlopen(url)
+            app.processEvents()
+            data = response.read()
+            app.processEvents()
+            price = json.loads(data)['data']['amount']
+
         self.show_price.setText(f'{price} {currency}')
         app.processEvents()
         
