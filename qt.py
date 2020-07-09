@@ -58,14 +58,6 @@ class Ui_BitCoin(object):
         self.statusbar = QtWidgets.QStatusBar(BitCoin)
         self.statusbar.setObjectName("statusbar")
         BitCoin.setStatusBar(self.statusbar)
-        self.actionicon = QtWidgets.QAction(BitCoin)
-        self.actionicon.setCheckable(False)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        icon.addPixmap(QtGui.QPixmap("icon.png"), QtGui.QIcon.Active, QtGui.QIcon.On)
-        self.actionicon.setIcon(icon)
-        self.actionicon.setShortcutContext(QtCore.Qt.WindowShortcut)
-        self.actionicon.setObjectName("actionicon")
 
         self.retranslateUi(BitCoin)
         self.get_price.clicked.connect(self.get_price.showMenu)
@@ -79,7 +71,6 @@ class Ui_BitCoin(object):
         self.choose_price.setItemText(1, _translate("BitCoin", "EUR"))
         self.label.setText(_translate("BitCoin", "تبدیل کننده بیت کوین"))
         self.label_3.setText(_translate("BitCoin", "تبدیل شده:"))
-        self.actionicon.setText(_translate("BitCoin", "icon"))
 
 
 if __name__ == "__main__":
