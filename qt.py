@@ -14,6 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_BitCoin(object):
     def setupUi(self, BitCoin):
         BitCoin.setObjectName("BitCoin")
+        BitCoin.setWindowModality(QtCore.Qt.NonModal)
         BitCoin.setEnabled(True)
         BitCoin.resize(228, 135)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -21,8 +22,12 @@ class Ui_BitCoin(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(BitCoin.sizePolicy().hasHeightForWidth())
         BitCoin.setSizePolicy(sizePolicy)
-        BitCoin.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        BitCoin.setMinimumSize(QtCore.QSize(228, 135))
+        BitCoin.setMaximumSize(QtCore.QSize(228, 135))
+        BitCoin.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        BitCoin.setFocusPolicy(QtCore.Qt.ClickFocus)
         BitCoin.setWindowFilePath("")
+        BitCoin.setDocumentMode(False)
         self.centralwidget = QtWidgets.QWidget(BitCoin)
         self.centralwidget.setObjectName("centralwidget")
         self.bitcoin_price = QtWidgets.QLabel(self.centralwidget)
@@ -40,7 +45,7 @@ class Ui_BitCoin(object):
         self.choose_price.addItem("")
         self.choose_price.addItem("")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(12, 10, 121, 20))
+        self.label.setGeometry(QtCore.QRect(17, 10, 101, 20))
         self.label.setObjectName("label")
         self.show_price = QtWidgets.QLabel(self.centralwidget)
         self.show_price.setGeometry(QtCore.QRect(11, 84, 69, 13))
@@ -53,6 +58,14 @@ class Ui_BitCoin(object):
         self.statusbar = QtWidgets.QStatusBar(BitCoin)
         self.statusbar.setObjectName("statusbar")
         BitCoin.setStatusBar(self.statusbar)
+        self.actionicon = QtWidgets.QAction(BitCoin)
+        self.actionicon.setCheckable(False)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon.addPixmap(QtGui.QPixmap("icon.png"), QtGui.QIcon.Active, QtGui.QIcon.On)
+        self.actionicon.setIcon(icon)
+        self.actionicon.setShortcutContext(QtCore.Qt.WindowShortcut)
+        self.actionicon.setObjectName("actionicon")
 
         self.retranslateUi(BitCoin)
         self.get_price.clicked.connect(self.get_price.showMenu)
@@ -64,8 +77,9 @@ class Ui_BitCoin(object):
         self.get_price.setText(_translate("BitCoin", "تبدیل"))
         self.choose_price.setItemText(0, _translate("BitCoin", "USD"))
         self.choose_price.setItemText(1, _translate("BitCoin", "EUR"))
-        self.label.setText(_translate("BitCoin", "تبدیل واحد ها به بیت کوین"))
+        self.label.setText(_translate("BitCoin", "تبدیل کننده بیت کوین"))
         self.label_3.setText(_translate("BitCoin", "تبدیل شده:"))
+        self.actionicon.setText(_translate("BitCoin", "icon"))
 
 
 if __name__ == "__main__":
