@@ -12,7 +12,9 @@ class Ui_BitCoin(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(BitCoin.sizePolicy().hasHeightForWidth())
         BitCoin.setSizePolicy(sizePolicy)
-        BitCoin.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        BitCoin.setMinimumSize(QtCore.QSize(228, 135))
+        BitCoin.setMaximumSize(QtCore.QSize(228, 135))
+        BitCoin.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         BitCoin.setWindowFilePath("")
         self.centralwidget = QtWidgets.QWidget(BitCoin)
         self.centralwidget.setObjectName("centralwidget")
@@ -30,7 +32,7 @@ class Ui_BitCoin(object):
         self.choose_price.addItem("")
         self.choose_price.addItem("")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(12, 10, 121, 20))
+        self.label.setGeometry(QtCore.QRect(17, 10, 101, 20))
         self.label.setObjectName("label")
         self.show_price = QtWidgets.QLabel(self.centralwidget)
         self.show_price.setGeometry(QtCore.QRect(11, 84, 69, 13))
@@ -47,6 +49,7 @@ class Ui_BitCoin(object):
 
         self.retranslateUi(BitCoin)
         self.get_price.clicked.connect(self.call_price)
+        app.processEvents()
         QtCore.QMetaObject.connectSlotsByName(BitCoin)
 
         app.processEvents()
@@ -66,8 +69,11 @@ class Ui_BitCoin(object):
         app.processEvents()        
         currency = self.choose_price.currentText()
         url = f'https://api.coinbase.com/v2/prices/BTC-{currency}/buy'
+        app.processEvents()
         response = urllib.request.urlopen(url)
+        app.processEvents()
         data = response.read()
+        app.processEvents()
         price = json.loads(data)['data']['amount']
         self.show_price.setText(f'{price} {currency}')
         app.processEvents()
