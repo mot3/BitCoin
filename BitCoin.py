@@ -1,5 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import urllib.request, json, requests
+import os
+
+os.system('pip install -r requirements.txt')
 
 class Ui_BitCoin(object):
     def setupUi(self, BitCoin):
@@ -31,7 +34,7 @@ class Ui_BitCoin(object):
         self.choose_price.setObjectName("choose_price")
         self.choose_price.addItem("")
         self.choose_price.addItem("")
-        self.choose_price.addItem("")        
+        self.choose_price.addItem("")
         self.choose_price.addItem("")
         self.choose_price.addItem("")
         self.label = QtWidgets.QLabel(self.centralwidget)
