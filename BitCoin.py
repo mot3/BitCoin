@@ -37,6 +37,9 @@ class Ui_BitCoin(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(17, 10, 101, 20))
         self.label.setObjectName("label")
+        self.l_author = QtWidgets.QLabel(self.centralwidget)
+        self.l_author.setGeometry(QtCore.QRect(17, 28, 80, 20))
+        self.l_author.setObjectName("l_author")
         self.show_price = QtWidgets.QLabel(self.centralwidget)
         self.show_price.setGeometry(QtCore.QRect(11, 84, 70, 13))
         self.show_price.setObjectName("show_price")
@@ -66,7 +69,8 @@ class Ui_BitCoin(object):
         self.choose_price.setItemText(2, _translate("BitCoin", "EUR (€)"))
         self.choose_price.setItemText(3, _translate("BitCoin", "GBP (£)"))
         self.choose_price.setItemText(4, _translate("BitCoin", 'AUD (A$)'))
-                
+        
+        self.l_author.setText(_translate("BitCoin", "محمد توکلی"))
         self.label.setText(_translate("BitCoin", "تبدیل کننده بیت کوین"))
         self.label_3.setText(_translate("BitCoin", "1 بیت کوین:"))
 
