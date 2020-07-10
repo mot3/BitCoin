@@ -84,7 +84,7 @@ class Ui_BitCoin(object):
         currency = self.choose_price.currentText()[0:3]        
 
         if currency == 'IRI':
-            key = 'UczY9WVGXJZGRnbpnYTDzJKuKcYAgHaa'
+            key = 'JFGN2c6leJDktgSkIbrXezvEOa0ZxrS2'
             url = f'http://api.navasan.tech/latest/?api_key={key}'
             response = requests.get(url)
             data = response.json()
