@@ -26,6 +26,9 @@ class Ui_BitCoin(object):
         BitCoin.setMaximumSize(QtCore.QSize(228, 135))
         BitCoin.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         BitCoin.setFocusPolicy(QtCore.Qt.ClickFocus)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/iconpath/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        BitCoin.setWindowIcon(icon)
         BitCoin.setWindowFilePath("")
         BitCoin.setDocumentMode(False)
         self.centralwidget = QtWidgets.QWidget(BitCoin)
@@ -55,9 +58,6 @@ class Ui_BitCoin(object):
         self.label_3.setGeometry(QtCore.QRect(80, 80, 61, 20))
         self.label_3.setObjectName("label_3")
         BitCoin.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(BitCoin)
-        self.statusbar.setObjectName("statusbar")
-        BitCoin.setStatusBar(self.statusbar)
 
         self.retranslateUi(BitCoin)
         self.get_price.clicked.connect(self.get_price.showMenu)
@@ -71,6 +71,7 @@ class Ui_BitCoin(object):
         self.choose_price.setItemText(1, _translate("BitCoin", "EUR"))
         self.label.setText(_translate("BitCoin", "تبدیل کننده بیت کوین"))
         self.label_3.setText(_translate("BitCoin", "تبدیل شده:"))
+#import icon
 
 
 if __name__ == "__main__":

@@ -18,7 +18,11 @@ class Ui_BitCoin(object):
         BitCoin.setMinimumSize(QtCore.QSize(228, 135))
         BitCoin.setMaximumSize(QtCore.QSize(228, 135))
         BitCoin.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
-        BitCoin.setWindowFilePath("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/iconpath/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        BitCoin.setWindowIcon(icon)
+        BitCoin.setWindowFilePath("")        
+        BitCoin.setDocumentMode(False)
         self.centralwidget = QtWidgets.QWidget(BitCoin)
         self.centralwidget.setObjectName("centralwidget")
         self.bitcoin_price = QtWidgets.QLabel(self.centralwidget)
@@ -50,12 +54,7 @@ class Ui_BitCoin(object):
         self.label_3.setGeometry(QtCore.QRect(80, 80, 61, 20))
         self.label_3.setObjectName("label_3")
         BitCoin.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(BitCoin)
-        self.statusbar.setObjectName("statusbar")
-        BitCoin.setStatusBar(self.statusbar)
-
         app.processEvents()
-
         self.retranslateUi(BitCoin)
         self.get_price.clicked.connect(self.call_price)
         app.processEvents()
@@ -72,7 +71,7 @@ class Ui_BitCoin(object):
         self.choose_price.setItemText(2, _translate("BitCoin", "EUR (€)"))
         self.choose_price.setItemText(3, _translate("BitCoin", "GBP (£)"))
         self.choose_price.setItemText(4, _translate("BitCoin", 'AUD (A$)'))
-        
+
         self.l_author.setText(_translate("BitCoin", "محمد توکلی"))
         self.label.setText(_translate("BitCoin", "تبدیل کننده بیت کوین"))
         self.label_3.setText(_translate("BitCoin", "1 بیت کوین:"))
@@ -81,7 +80,7 @@ class Ui_BitCoin(object):
 
     def call_price(self):
         app.processEvents()
-        currency = self.choose_price.currentText()[0:3]        
+        currency = self.choose_price.currentText()[0:3]
 
         if currency == 'IRI':
             key = 'JFGN2c6leJDktgSkIbrXezvEOa0ZxrS2'
@@ -108,8 +107,8 @@ class Ui_BitCoin(object):
 
         self.show_price.setText(f'{price} {currency}')
         app.processEvents()
-        
 
+import icon
 
 if __name__ == "__main__":
     import sys
